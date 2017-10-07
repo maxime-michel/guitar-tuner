@@ -16,6 +16,7 @@
  */
 
 import ToasterInstance from './libs/Toaster';
+import 'get-float-time-domain-data';
 
 (function () {
   // Don't you just love prefixed stuff? No? Me neither.

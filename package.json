@@ -5,6 +5,9 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "dependencies": {
+    "get-float-time-domain-data": "^0.1.0"
+  },
   "devDependencies": {
     "gulp-qunit": "^1.2.1",
     "gulp": "^3.8.11",
