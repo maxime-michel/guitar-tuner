@@ -44,7 +44,7 @@ class AudioProcessor {
     this.gainNode = this.audioContext.createGain();
     this.microphone = null;
 
-    this.gainNode.gain.value = 0;
+    this.gainNode.gain.setValueAtTime(0, this.audioContext.currentTime);
     this.analyser.fftSize = this.FFTSIZE;
     this.analyser.smoothingTimeConstant = 0;
 
