@@ -99,7 +99,7 @@ class AudioProcessor {
 
   requestUserMedia () {
 
-    navigator.getUserMedia({audio:true}, (stream) => {
+    navigator.mediaDevices.getUserMedia({audio:true}).then((stream) => {
 
       this.sendingAudioData = true;
       this.stream = stream;
@@ -110,7 +110,7 @@ class AudioProcessor {
 
       requestAnimationFrame(this.dispatchAudioData);
 
-    }, (err) => {
+    }).catch((err) => {
       ToasterInstance().then((toaster) => {
         toaster.toast('Unable to access the microphone')
       });
