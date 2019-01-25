@@ -15,19 +15,48 @@
  *
  */
 
-class AudioVisualizer {
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+
+class AudioVisualizer extends PolymerElement {
+
+  static get template() {
+    return html`
+      <style>
+        :host {
+          will-change: transform;
+        }
+
+        #container {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+
+        #pitch {
+          display: block;
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+          will-change: transform;
+        }
+      </style>
+
+      <div id="container">
+        <canvas id="pitch"></canvas>
+        <content></content>
+      </div>
+    `;
+  }
 
   constructor () {
     // Defer normal constructor behavior to created because we're only
     // allowed to take the prototype with us from the class.
-    Polymer(AudioVisualizer.prototype);
+    //Polymer(AudioVisualizer.prototype);
   }
 
-  get is () {
-    return 'audio-visualizer';
-  }
-
-  created () {
+  ready () {
     this.audioProcessor = document.querySelector('audio-processor');
     this.surroundCanvas = document.createElement('canvas');
 
@@ -446,4 +475,4 @@ class AudioNotation {
 
 }
 
-new AudioVisualizer();
+customElements.define('audio-visualizer', AudioVisualizer);

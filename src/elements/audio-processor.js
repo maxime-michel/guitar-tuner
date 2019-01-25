@@ -15,7 +15,7 @@
  *
  */
 
-import ToasterInstance from '../../scripts/libs/Toaster';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 
 /**
  * Takes the audio from getUserMedia and processes it to figure out how well
@@ -23,19 +23,15 @@ import ToasterInstance from '../../scripts/libs/Toaster';
  *
  * Big thanks to Chris Wilson (@cwilso) for code and assistance.
  */
-class AudioProcessor {
+class AudioProcessor extends PolymerElement {
 
   constructor () {
     // Defer normal constructor behavior to created because we're only
     // allowed to take the prototype with us from the class.
-    Polymer(AudioProcessor.prototype);
+    //Polymer(AudioProcessor.prototype);
   }
 
-  get is () {
-    return 'audio-processor';
-  }
-
-  created () {
+  ready () {
 
     this.FFTSIZE = 2048;
     this.stream = null;
@@ -111,9 +107,9 @@ class AudioProcessor {
       requestAnimationFrame(this.dispatchAudioData);
 
     }).catch((err) => {
-      ToasterInstance().then((toaster) => {
+      /*ToasterInstance().then((toaster) => {
         toaster.toast('Unable to access the microphone')
-      });
+      });*/
     });
   }
 
@@ -327,4 +323,4 @@ class AudioProcessor {
   }
 }
 
-new AudioProcessor();
+customElements.define('audio-processor', AudioProcessor);
