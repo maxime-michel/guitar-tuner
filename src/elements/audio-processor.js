@@ -25,7 +25,13 @@ import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
  */
 class AudioProcessor extends PolymerElement {
 
-  ready () {
+  static get properties() {
+    return {
+      isReady: Boolean
+    }
+  }
+
+  start() {
     this.FFTSIZE = 2048;
     this.stream = null;
     this.audioContext = new AudioContext();
@@ -84,6 +90,9 @@ class AudioProcessor extends PolymerElement {
     this.dispatchAudioData = this.dispatchAudioData.bind(this);
     this.sortStringKeysByDifference = this.sortStringKeysByDifference.bind(this);
     this.onVisibilityChange = this.onVisibilityChange.bind(this);
+    
+    this.isReady = true;
+    this.requestUserMedia();
   }
 
   requestUserMedia () {
@@ -137,7 +146,9 @@ class AudioProcessor extends PolymerElement {
 
       this.stream = null;
     } else {
-      this.requestUserMedia();
+      if (this.isReady) {
+        this.requestUserMedia();
+      }
     }
 
   }
@@ -308,7 +319,7 @@ class AudioProcessor extends PolymerElement {
     let note = (12 + (Math.round(semitonesFromA4) % 12)) % 12;
 
     // Now tell anyone who's interested.
-    this.fire('audio-data', { frequency, octave, note });
+    this.dispatchEvent(new CustomEvent('audio-data', { detail: { frequency, octave, note }}));
   }
 }
 

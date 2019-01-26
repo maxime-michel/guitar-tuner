@@ -26,11 +26,11 @@ class GuitarTunerCore extends PolymerElement {
   static get template() {
     return html`
       <main class="main">
-        <audio-processor></audio-processor>
-        <audio-visualizer></audio-visualizer>
-        <tuning-instructions></tuning-instructions>
+        <audio-processor id="audioProcessor"></audio-processor>
+        <audio-visualizer id="audioVisualizer"></audio-visualizer>
+        <tuning-instructions id="tuningInstructions"></tuning-instructions>
       </main>
-      <paper-toast text="Please click here to enable the tuner." opened duration="0"></paper-toast>
+      <paper-toast text="Please click here to enable the tuner." opened duration="0" on-click="start"></paper-toast>
     `;
   }
 
@@ -53,6 +53,17 @@ class GuitarTunerCore extends PolymerElement {
     }
 
     document.body.classList.add('supported');
+
+    this.$.audioProcessor.addEventListener('audio-data', (e)=>this._onAudioData(e));
+  }
+
+  _onAudioData(e) {
+    this.$.tuningInstructions.onAudioData(e);
+    this.$.audioVisualizer.onAudioData(e);
+  }
+
+  start() {
+    this.$.audioProcessor.start();
   }
 }
 

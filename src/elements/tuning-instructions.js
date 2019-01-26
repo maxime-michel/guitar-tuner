@@ -178,8 +178,6 @@ class TuningInstructions extends PolymerElement {
     this.stringFrequencyMessage = this.$.stringfrequency;
     this.indicator = this.$.indicator;
 
-    this.audioProcessor.addEventListener('audio-data', this.onAudioData);
-
     setTimeout(() => this.classList.add('resolved'), 100);
   }
 

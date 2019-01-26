@@ -76,8 +76,6 @@ class AudioVisualizer extends PolymerElement {
     this.ctx = this.canvas.getContext('2d');
     this.surroundCtx = this.surroundCanvas.getContext('2d');
 
-    this.audioProcessor.addEventListener('audio-data', this.onAudioData);
-
     this.gradientLeft = this.ctx.createLinearGradient(-16, 0, 0, 0);
     this.gradientLeft.addColorStop(0, 'rgba(0,0,0,0)');
     this.gradientLeft.addColorStop(1, 'rgba(0,0,0,0.2)');
