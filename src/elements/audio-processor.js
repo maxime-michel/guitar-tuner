@@ -133,17 +133,11 @@ class AudioProcessor extends PolymerElement {
       this.sendingAudioData = false;
 
       if (this.stream) {
-        // Chrome 47+
         this.stream.getAudioTracks().forEach((track) => {
           if ('stop' in track) {
             track.stop();
           }
         });
-
-        // Chrome 46-
-        if ('stop' in this.stream) {
-          this.stream.stop();
-        }
       }
 
       this.stream = null;
