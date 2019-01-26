@@ -175,7 +175,7 @@ class TuningInstructions extends PolymerElement {
 
   }
 
-  attached () {
+  connectedCallback () {
 
     this.frequencyMessage = this.$.frequency;
     this.stringFrequencyMessage = this.$.stringfrequency;
@@ -186,7 +186,7 @@ class TuningInstructions extends PolymerElement {
     setTimeout(() => this.classList.add('resolved'), 100);
   }
 
-  detached () {
+  disconnectedCallback () {
     this.audioProcessor.removeEventListener('audio-data', this.onAudioData);
   }
 

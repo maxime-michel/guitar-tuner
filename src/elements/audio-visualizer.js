@@ -73,7 +73,7 @@ class AudioVisualizer extends PolymerElement {
     this.octave = '4th octave';
   }
 
-  attached () {
+  connectedCallback () {
 
     this.canvas = this.$.pitch;
     this.ctx = this.canvas.getContext('2d');
@@ -104,7 +104,7 @@ class AudioVisualizer extends PolymerElement {
     requestAnimationFrame(this.waitForDimensions);
   }
 
-  detached () {
+  disconnectedCallback () {
     this.audioProcessor.removeEventListener('audio-data', this.onAudioData);
     window.removeEventListener('resize', this.onResize);
   }
