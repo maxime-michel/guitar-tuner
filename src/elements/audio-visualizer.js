@@ -57,6 +57,8 @@ class AudioVisualizer extends PolymerElement {
   }
 
   ready () {
+    super.ready();
+
     this.audioProcessor = document.querySelector('audio-processor');
     this.surroundCanvas = document.createElement('canvas');
 
@@ -74,6 +76,7 @@ class AudioVisualizer extends PolymerElement {
   }
 
   connectedCallback () {
+    super.connectedCallback();
 
     this.canvas = this.$.pitch;
     this.ctx = this.canvas.getContext('2d');
@@ -105,6 +108,7 @@ class AudioVisualizer extends PolymerElement {
   }
 
   disconnectedCallback () {
+    super.disconnectedCallback();
     this.audioProcessor.removeEventListener('audio-data', this.onAudioData);
     window.removeEventListener('resize', this.onResize);
   }

@@ -114,6 +114,7 @@ class AudioProcessor extends PolymerElement {
   }
 
   connectedCallback () {
+    super.connectedCallback();
 
     // Set up the stream kill / setup code for visibility changes.
     document.addEventListener('visibilitychange', this.onVisibilityChange);
@@ -124,6 +125,7 @@ class AudioProcessor extends PolymerElement {
   }
 
   disconnectedCallback () {
+    super.disconnectedCallback();
     this.sendingAudioData = false;
   }
 

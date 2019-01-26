@@ -148,6 +148,8 @@ class TuningInstructions extends PolymerElement {
   }
 
   ready () {
+    super.ready();
+
     this.audioProcessor = document.querySelector('audio-processor');
     this.requestedAnimationFrame = false;
     this.tolerance = 0.006;
@@ -176,6 +178,7 @@ class TuningInstructions extends PolymerElement {
   }
 
   connectedCallback () {
+    super.connectedCallback();
 
     this.frequencyMessage = this.$.frequency;
     this.stringFrequencyMessage = this.$.stringfrequency;
@@ -187,6 +190,7 @@ class TuningInstructions extends PolymerElement {
   }
 
   disconnectedCallback () {
+    super.disconnectedCallback();
     this.audioProcessor.removeEventListener('audio-data', this.onAudioData);
   }
 
