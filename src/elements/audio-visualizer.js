@@ -50,12 +50,6 @@ class AudioVisualizer extends PolymerElement {
     `;
   }
 
-  constructor () {
-    // Defer normal constructor behavior to created because we're only
-    // allowed to take the prototype with us from the class.
-    //Polymer(AudioVisualizer.prototype);
-  }
-
   ready () {
     super.ready();
 

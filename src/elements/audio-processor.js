@@ -25,14 +25,7 @@ import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
  */
 class AudioProcessor extends PolymerElement {
 
-  constructor () {
-    // Defer normal constructor behavior to created because we're only
-    // allowed to take the prototype with us from the class.
-    //Polymer(AudioProcessor.prototype);
-  }
-
   ready () {
-
     this.FFTSIZE = 2048;
     this.stream = null;
     this.audioContext = new AudioContext();
