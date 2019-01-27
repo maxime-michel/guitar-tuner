@@ -16,6 +16,7 @@
  */
 
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-toast/paper-toast.js';
 
 /**
  * Takes the audio from getUserMedia and processes it to figure out how well
@@ -29,6 +30,12 @@ class AudioProcessor extends PolymerElement {
     return {
       isReady: Boolean
     }
+  }
+
+  static get template() {
+    return html`
+      <paper-toast id="toast" text="Unable to access the microphone."></paper-toast>
+    `;
   }
 
   start() {
@@ -109,9 +116,7 @@ class AudioProcessor extends PolymerElement {
       requestAnimationFrame(this.dispatchAudioData);
 
     }).catch((err) => {
-      /*ToasterInstance().then((toaster) => {
-        toaster.toast('Unable to access the microphone')
-      });*/
+      this.$.toast.open();
     });
   }
 

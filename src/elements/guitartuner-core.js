@@ -30,7 +30,7 @@ class GuitarTunerCore extends PolymerElement {
         <audio-visualizer id="audioVisualizer"></audio-visualizer>
         <tuning-instructions id="tuningInstructions"></tuning-instructions>
       </main>
-      <paper-toast text="Please click here to enable the tuner." opened duration="0" on-click="start"></paper-toast>
+      <paper-toast id="toast" text="Please click here to enable the tuner." opened duration="0" on-click="start"></paper-toast>
     `;
   }
 
@@ -64,6 +64,7 @@ class GuitarTunerCore extends PolymerElement {
 
   start() {
     this.$.audioProcessor.start();
+    this.$.toast.toggle();
   }
 }
 
