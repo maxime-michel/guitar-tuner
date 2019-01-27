@@ -20,6 +20,7 @@ import './audio-processor.js';
 import './audio-visualizer.js';
 import './tuning-instructions.js';
 import '@polymer/paper-toast/paper-toast.js';
+import {getFloatTimeDomainData} from '../get-float-time-domain-data.js';
 
 class GuitarTunerCore extends PolymerElement {
 
@@ -55,6 +56,8 @@ class GuitarTunerCore extends PolymerElement {
     document.body.classList.add('supported');
 
     this.$.audioProcessor.addEventListener('audio-data', (e)=>this._onAudioData(e));
+
+    getFloatTimeDomainData();
   }
 
   _onAudioData(e) {
