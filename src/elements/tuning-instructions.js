@@ -183,9 +183,7 @@ class TuningInstructions extends PolymerElement {
 
     this.audioProcessor.addEventListener('audio-data', this.onAudioData);
 
-    this.async( () => {
-      this.classList.add('resolved');
-    }, 100);
+    setTimeout(() => this.classList.add('resolved'), 100);
   }
 
   detached () {
