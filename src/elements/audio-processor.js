@@ -34,7 +34,7 @@ class AudioProcessor extends PolymerElement {
 
   static get template() {
     return html`
-      <paper-toast id="toast" text="Unable to access the microphone."></paper-toast>
+      <paper-toast id="toast" text="Impossible d'accéder au micro."></paper-toast>
     `;
   }
 
