@@ -27,6 +27,30 @@ class TuningInstructions extends PolymerElement {
           height: 100px;
         }
 
+        tuning-instructions {
+          margin-top: 22px;
+          position: relative;
+        }
+
+        tuning-instructions:not(.resolved) {
+          display: block;
+          width: 140px;
+          height: 100px;
+        }
+
+        tuning-instructions:not(.resolved)::after {
+          position: absolute;
+          content: '';
+          display: block;
+          width: 56px;
+          height: 56px;
+          top: 0;
+          left: 42px;
+
+          border-radius: 50%;
+          background: #FFF;
+        }
+
         :host(.resolved) #indicator {
           width: 56px;
           height: 56px;

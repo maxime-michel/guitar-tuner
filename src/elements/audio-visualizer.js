@@ -41,6 +41,36 @@ class AudioVisualizer extends PolymerElement {
           margin: 0 auto;
           will-change: transform;
         }
+
+        audio-visualizer {
+          display: block;
+          width: 100%;
+          height: 316px;
+          position: relative;
+        }
+
+        audio-visualizer:not(.resolved)::after {
+          content: '';
+          display: block;
+          max-width: 316px;
+          max-height: 316px;
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+
+          border-radius: 50%;
+          box-shadow: inset 0 0 0 57px #FF9800;
+        }
+
+        @media (min-height: 544px), (min-width: 600px) {
+          audio-visualizer {
+            height: 316px;
+          }
+
+          audio-visualizer:not(.resolved)::after {
+            box-shadow: inset 0 0 0 57px #FF9800;
+          }
+        }
       </style>
 
       <div id="container">

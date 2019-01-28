@@ -27,6 +27,92 @@ limitations under the License.
     <meta id="theme-color" name="theme-color" content="#263238">
     <title>Guitar Tuner</title>
     <link rel="manifest" href="/manifest.json">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        font-family: 'Roboto';
+        font-weight: 400;
+        color: #444;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      html {
+        overflow: hidden;
+      }
+
+      body {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+
+        -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+
+        -webkit-justify-content: center;
+                  -ms-flex-pack: center;
+                justify-content: center;
+
+        -webkit-align-items: center;
+             -ms-flex-align: center;
+                align-items: center;
+
+        -webkit-align-content: stretch;
+           -ms-flex-line-pack: stretch;
+                align-content: stretch;
+
+        background: $backgroundDark;
+      }
+
+      a {
+        color: $secondary;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      button::-moz-focus-inner {
+        border: 0;
+      }
+
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 100;
+        src: local('Roboto Thin'), local('Roboto-Thin'),
+            url(/src/fonts/Roboto-100.woff2) format('woff2'),
+            url(/src/fonts/Roboto-100.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 300;
+        src: local('Roboto Light'), local('Roboto-Light'),
+            url(/src/fonts/Roboto-300.woff2) format('woff2'),
+            url(/src/fonts/Roboto-300.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Roboto'), local('Roboto-Regular'),
+            url(/src/fonts/Roboto-400.woff2) format('woff2'),
+            url(/src/fonts/Roboto-400.woff) format('woff');
+      }
+    </style>
   </head>
 
   <body>
