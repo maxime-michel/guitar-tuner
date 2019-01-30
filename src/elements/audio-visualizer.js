@@ -24,6 +24,10 @@ class AudioVisualizer extends PolymerElement {
       <style>
         :host {
           will-change: transform;
+          display: block;
+          width: 100%;
+          height: 316px;
+          position: relative;
         }
 
         #container {
@@ -42,14 +46,7 @@ class AudioVisualizer extends PolymerElement {
           will-change: transform;
         }
 
-        audio-visualizer {
-          display: block;
-          width: 100%;
-          height: 316px;
-          position: relative;
-        }
-
-        audio-visualizer:not(.resolved)::after {
+        :host:not(.resolved)::after {
           content: '';
           display: block;
           max-width: 316px;
@@ -63,11 +60,11 @@ class AudioVisualizer extends PolymerElement {
         }
 
         @media (min-height: 544px), (min-width: 600px) {
-          audio-visualizer {
+          :host {
             height: 316px;
           }
 
-          audio-visualizer:not(.resolved)::after {
+          :host:not(.resolved)::after {
             box-shadow: inset 0 0 0 57px #FF9800;
           }
         }

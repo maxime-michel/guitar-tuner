@@ -25,20 +25,17 @@ class TuningInstructions extends PolymerElement {
         :host {
           width: 140px;
           height: 100px;
-        }
-
-        tuning-instructions {
           margin-top: 22px;
           position: relative;
         }
 
-        tuning-instructions:not(.resolved) {
+        :host:not(.resolved) {
           display: block;
           width: 140px;
           height: 100px;
         }
 
-        tuning-instructions:not(.resolved)::after {
+        :host:not(.resolved)::after {
           position: absolute;
           content: '';
           display: block;

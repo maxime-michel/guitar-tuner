@@ -27,7 +27,7 @@ class GuitarTunerCore extends PolymerElement {
   static get template() {
     return html`
       <style>
-        .main {
+        :host {
           width: 100%;
           height: 100%;
           background: #37474F center center no-repeat;
@@ -52,41 +52,39 @@ class GuitarTunerCore extends PolymerElement {
           -webkit-align-items: center;
               -ms-flex-align: center;
                   align-items: center;
+        }
 
-          &:after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            position: absolute;
+        :host:after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          position: absolute;
 
-            opacity: 0;
-            transition: opacity 0.333s cubic-bezier(0,0,0.21,1) 0.5s;
-          }
+          opacity: 0;
+          transition: opacity 0.333s cubic-bezier(0,0,0.21,1) 0.5s;
         }
 
         .unsupported {
-          .main {
-            &:after {
-              opacity: 1;
-              background: #37474F url(/images/unsupported.png) center center no-repeat;
-            }
+          :host:after {
+            opacity: 1;
+            background: #37474F url(/images/unsupported.png) center center no-repeat;
+          }
 
-            & * {
-              transition: opacity 0.333s cubic-bezier(0,0,0.21,1);
-              opacity: 0;
-            }
+          :host * {
+            transition: opacity 0.333s cubic-bezier(0,0,0.21,1);
+            opacity: 0;
           }
         }
 
-        .supported .main:after {
+        .supported :host:after {
           display: none;
         }
 
         @media (min-height: 544px) and (min-width: 600px) {
-          .main {
+          :host {
             max-width: 600px;
             max-height: 544px;
             border-radius: 2px;
@@ -96,7 +94,7 @@ class GuitarTunerCore extends PolymerElement {
           }
         }
       </style>
-      <main class="main">
+      <main>
         <audio-processor id="audioProcessor"></audio-processor>
         <audio-visualizer id="audioVisualizer"></audio-visualizer>
         <tuning-instructions id="tuningInstructions"></tuning-instructions>
