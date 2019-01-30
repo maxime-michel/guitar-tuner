@@ -30,7 +30,7 @@ class GuitarTunerCore extends PolymerElement {
         .main {
           width: 100%;
           height: 100%;
-          background: $background center center no-repeat;
+          background: #37474F center center no-repeat;
           background-image: none;
 
           display:-webkit-flex;
@@ -71,7 +71,7 @@ class GuitarTunerCore extends PolymerElement {
           .main {
             &:after {
               opacity: 1;
-              background: $background url(/images/unsupported.png) center center no-repeat;
+              background: #37474F url(/images/unsupported.png) center center no-repeat;
             }
 
             & * {
