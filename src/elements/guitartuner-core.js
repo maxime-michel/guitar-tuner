@@ -93,6 +93,10 @@ class GuitarTunerCore extends PolymerElement {
                 0 4px 2px -2px rgba(0, 0, 0, 0.2);
           }
         }
+
+        main {
+          width: 100%;
+        }
       </style>
       <main>
         <audio-processor id="audioProcessor"></audio-processor>
