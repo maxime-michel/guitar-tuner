@@ -28,6 +28,7 @@ class AudioVisualizer extends PolymerElement {
           width: 100%;
           height: 316px;
           position: relative;
+          margin-bottom: 22px;
         }
 
         #container {

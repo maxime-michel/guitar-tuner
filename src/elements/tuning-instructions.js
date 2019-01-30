@@ -25,7 +25,6 @@ class TuningInstructions extends PolymerElement {
         :host {
           width: 140px;
           height: 100px;
-          margin-top: 22px;
           position: relative;
         }
 
