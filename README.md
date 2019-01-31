@@ -1,23 +1,14 @@
 # Guitar Tuner
 
-![Guitar Tuner](https://aerotwist.com/static/blog/guitar-tuner/grabs.png)
+![Guitar Tuner](https://accordeur.accordersaguitare.com/src/images/grabs.png)
 
-A sample web app that lets you tune a guitar. It uses ES6 classes (via Babel) and [Polymer 1.0](https://www.polymer-project.org/1.0/).
+A sample web app that lets you tune a guitar. It uses ES6 classes (via Babel) and [Polymer](https://www.polymer-project.org/).
 
-[See the site here](https://guitar-tuner.appspot.com/)
+The app was converted to Polymer 3 in early 2019 to keep up with new Chrome APIs. The first blow was the mandatory user interaction before user media is requested. Then came the impending removal of `HTML Imports`, `document.registerElement` and `Element.createShadowRoot`.
 
-## Running the site locally
+[You can see the old (by now broken) app here](https://guitar-tuner.appspot.com/), [and the new one here](https://accordeur.accordersaguitare.com/).
 
-1. Download the [Google App Engine SDK for Python](https://cloud.google.com/appengine/downloads?hl=en). Grab the Launcher, and install it.
-2. `npm install -g gulp`
-3. `git clone https://github.com/GoogleChrome/guitar-tuner`
-4. `cd guitar-tuner`
-5. `npm i`
-6. `gulp`
-
-Once the build has finished, you can boot the GAE Launcher and choose File -> Add Existing Application... and point it at the guitar-tuner folder.
-
-Start the application, and visit the URL indicated by the port, i.e. [http://localhost:8080](http://localhost:8080) (N.B. you do not the admin port).
+Future development should bring the service worker back, as well as allow multi-language.
 
 ## License
 
