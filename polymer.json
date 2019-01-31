@@ -1,0 +1,15 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/elements/guitartuner-core.js",
+  "builds": [
+    {
+      "preset": "es6-bundled"
+    }
+  ],
+  "moduleResolution": "node",
+  "npm": true,
+  "extraDependencies": [
+    "node_modules/@webcomponents/webcomponentsjs/**",
+    "favicon.ico"
+  ]
+}

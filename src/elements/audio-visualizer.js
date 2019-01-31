@@ -15,19 +15,72 @@
  *
  */
 
-class AudioVisualizer {
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 
-  constructor () {
-    // Defer normal constructor behavior to created because we're only
-    // allowed to take the prototype with us from the class.
-    Polymer(AudioVisualizer.prototype);
+class AudioVisualizer extends PolymerElement {
+
+  static get template() {
+    return html`
+      <style>
+        :host {
+          will-change: transform;
+          display: block;
+          width: 100%;
+          height: 316px;
+          position: relative;
+          margin-bottom: 22px;
+        }
+
+        #container {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+
+        #pitch {
+          display: block;
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+          will-change: transform;
+        }
+
+        :host:not(.resolved)::after {
+          content: '';
+          display: block;
+          max-width: 316px;
+          max-height: 316px;
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+
+          border-radius: 50%;
+          box-shadow: inset 0 0 0 57px #FF9800;
+        }
+
+        @media (min-height: 544px), (min-width: 600px) {
+          :host {
+            height: 316px;
+          }
+
+          :host:not(.resolved)::after {
+            box-shadow: inset 0 0 0 57px #FF9800;
+          }
+        }
+      </style>
+
+      <div id="container">
+        <canvas id="pitch"></canvas>
+        <content></content>
+      </div>
+    `;
   }
 
-  get is () {
-    return 'audio-visualizer';
-  }
+  ready () {
+    super.ready();
 
-  created () {
     this.audioProcessor = document.querySelector('audio-processor');
     this.surroundCanvas = document.createElement('canvas');
 
@@ -44,13 +97,12 @@ class AudioVisualizer {
     this.octave = '4th octave';
   }
 
-  attached () {
+  connectedCallback () {
+    super.connectedCallback();
 
     this.canvas = this.$.pitch;
     this.ctx = this.canvas.getContext('2d');
     this.surroundCtx = this.surroundCanvas.getContext('2d');
-
-    this.audioProcessor.addEventListener('audio-data', this.onAudioData);
 
     this.gradientLeft = this.ctx.createLinearGradient(-16, 0, 0, 0);
     this.gradientLeft.addColorStop(0, 'rgba(0,0,0,0)');
@@ -75,7 +127,8 @@ class AudioVisualizer {
     requestAnimationFrame(this.waitForDimensions);
   }
 
-  detached () {
+  disconnectedCallback () {
+    super.disconnectedCallback();
     this.audioProcessor.removeEventListener('audio-data', this.onAudioData);
     window.removeEventListener('resize', this.onResize);
   }
@@ -446,4 +499,4 @@ class AudioNotation {
 
 }
 
-new AudioVisualizer();
+customElements.define('audio-visualizer', AudioVisualizer);

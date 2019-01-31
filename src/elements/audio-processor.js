@@ -15,7 +15,8 @@
  *
  */
 
-import ToasterInstance from '../../scripts/libs/Toaster';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-toast/paper-toast.js';
 
 /**
  * Takes the audio from getUserMedia and processes it to figure out how well
@@ -23,20 +24,21 @@ import ToasterInstance from '../../scripts/libs/Toaster';
  *
  * Big thanks to Chris Wilson (@cwilso) for code and assistance.
  */
-class AudioProcessor {
+class AudioProcessor extends PolymerElement {
 
-  constructor () {
-    // Defer normal constructor behavior to created because we're only
-    // allowed to take the prototype with us from the class.
-    Polymer(AudioProcessor.prototype);
+  static get properties() {
+    return {
+      isReady: Boolean
+    }
   }
 
-  get is () {
-    return 'audio-processor';
+  static get template() {
+    return html`
+      <paper-toast id="toast" text="Impossible d'accéder au micro."></paper-toast>
+    `;
   }
 
-  created () {
-
+  start() {
     this.FFTSIZE = 2048;
     this.stream = null;
     this.audioContext = new AudioContext();
@@ -95,6 +97,9 @@ class AudioProcessor {
     this.dispatchAudioData = this.dispatchAudioData.bind(this);
     this.sortStringKeysByDifference = this.sortStringKeysByDifference.bind(this);
     this.onVisibilityChange = this.onVisibilityChange.bind(this);
+    
+    this.isReady = true;
+    this.requestUserMedia();
   }
 
   requestUserMedia () {
@@ -111,13 +116,12 @@ class AudioProcessor {
       requestAnimationFrame(this.dispatchAudioData);
 
     }).catch((err) => {
-      ToasterInstance().then((toaster) => {
-        toaster.toast('Unable to access the microphone')
-      });
+      this.$.toast.open();
     });
   }
 
-  attached () {
+  connectedCallback () {
+    super.connectedCallback();
 
     // Set up the stream kill / setup code for visibility changes.
     document.addEventListener('visibilitychange', this.onVisibilityChange);
@@ -127,7 +131,8 @@ class AudioProcessor {
 
   }
 
-  detached () {
+  disconnectedCallback () {
+    super.disconnectedCallback();
     this.sendingAudioData = false;
   }
 
@@ -137,22 +142,18 @@ class AudioProcessor {
       this.sendingAudioData = false;
 
       if (this.stream) {
-        // Chrome 47+
         this.stream.getAudioTracks().forEach((track) => {
           if ('stop' in track) {
             track.stop();
           }
         });
-
-        // Chrome 46-
-        if ('stop' in this.stream) {
-          this.stream.stop();
-        }
       }
 
       this.stream = null;
     } else {
-      this.requestUserMedia();
+      if (this.isReady) {
+        this.requestUserMedia();
+      }
     }
 
   }
@@ -323,8 +324,8 @@ class AudioProcessor {
     let note = (12 + (Math.round(semitonesFromA4) % 12)) % 12;
 
     // Now tell anyone who's interested.
-    this.fire('audio-data', { frequency, octave, note });
+    this.dispatchEvent(new CustomEvent('audio-data', { detail: { frequency, octave, note }}));
   }
 }
 
-new AudioProcessor();
+customElements.define('audio-processor', AudioProcessor);
