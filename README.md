@@ -8,7 +8,7 @@ The app was converted to Polymer 3 in early 2019 to keep up with new Chrome APIs
 
 [You can see the old (by now broken) app here](https://guitar-tuner.appspot.com/), [and the new one here](https://accordeur.accordersaguitare.com/).
 
-Future development should bring the service worker back, as well as allow multi-language.
+Future development should bring the service worker back.
 
 ## License
 

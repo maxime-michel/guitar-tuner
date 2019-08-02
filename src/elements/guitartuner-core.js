@@ -20,6 +20,8 @@ import './audio-processor.js';
 import './audio-visualizer.js';
 import './tuning-instructions.js';
 import '@polymer/paper-toast/paper-toast.js';
+import '@polymer/iron-location/iron-location.js';
+import '@polymer/iron-location/iron-query-params.js';
 import {getFloatTimeDomainData} from '../get-float-time-domain-data.js';
 
 class GuitarTunerCore extends PolymerElement {
@@ -98,13 +100,22 @@ class GuitarTunerCore extends PolymerElement {
           width: 100%;
         }
       </style>
+      <iron-location query="{{queryString}}"></iron-location>
+      <iron-query-params params-string="[[queryString]]" params-object="{{params}}"></iron-query-params>
       <main>
         <audio-processor id="audioProcessor"></audio-processor>
         <audio-visualizer id="audioVisualizer"></audio-visualizer>
         <tuning-instructions id="tuningInstructions"></tuning-instructions>
       </main>
-      <paper-toast id="toast" text="Cliquez ici pour démarrer l'accordeur." opened duration="0" on-click="start"></paper-toast>
+      <paper-toast id="toast" text="{{_i18n('Click here to start the tuner.', params.lang)}}" opened duration="0" on-click="start"></paper-toast>
     `;
+  }
+
+  _i18n(string, lang) {
+    if (lang == "fr") {
+      return "Cliquez ici pour démarrer l'accordeur.";
+    }
+    return string;
   }
 
   ready() {

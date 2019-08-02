@@ -17,6 +17,8 @@
 
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-toast/paper-toast.js';
+import '@polymer/iron-location/iron-location.js';
+import '@polymer/iron-location/iron-query-params.js';
 
 /**
  * Takes the audio from getUserMedia and processes it to figure out how well
@@ -34,8 +36,17 @@ class AudioProcessor extends PolymerElement {
 
   static get template() {
     return html`
-      <paper-toast id="toast" text="Impossible d'accéder au micro."></paper-toast>
+      <iron-location query="{{queryString}}"></iron-location>
+      <iron-query-params params-string="[[queryString]]" params-object="{{params}}"></iron-query-params>
+      <paper-toast id="toast" text="{{_i18n('Unable to access the microphone.', params.lang)}}"></paper-toast>
     `;
+  }
+
+  _i18n(string, lang) {
+    if (lang == "fr") {
+      return "Impossible d'accéder au micro.";
+    }
+    return string;
   }
 
   start() {
