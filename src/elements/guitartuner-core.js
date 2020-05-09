@@ -115,6 +115,9 @@ class GuitarTunerCore extends PolymerElement {
     if (lang == "fr") {
       return "Cliquez ici pour démarrer l'accordeur.";
     }
+    if (lang == "es") {
+      return "Pulsa aquí para afinar.";
+    }
     return string;
   }
 

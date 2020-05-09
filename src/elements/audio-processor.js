@@ -46,6 +46,9 @@ class AudioProcessor extends PolymerElement {
     if (lang == "fr") {
       return "Impossible d'accéder au micro.";
     }
+    if (lang == "es") {
+      return "No se puede acceder al micrófono.";
+    }
     return string;
   }
 
